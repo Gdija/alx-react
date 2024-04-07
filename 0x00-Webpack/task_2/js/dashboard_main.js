@@ -1,5 +1,5 @@
-import $ from "jquery";
 import '../css/main.css';
+import $ from "jquery";
 import _ from 'lodash';
 
 
