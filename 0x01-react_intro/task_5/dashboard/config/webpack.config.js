@@ -1,6 +1,8 @@
 const path = require('path');
 
 module.exports = {
+    mode: "development",
+    devtool: "inline-source-map",
     entry: './src/index.js',
     output: {
         filename: 'bundle.js',
@@ -20,6 +22,7 @@ module.exports = {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
                 use: [
+                    "file-loader",
                     {
                         loader: 'image-webpack-loader',
                         options: {
