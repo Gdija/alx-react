@@ -1,0 +1,9 @@
+.footer{
+    border-top: 3px solid red;;
+    margin-top: 50%;
+}
+.footer p{
+    font-size: 30px;
+    font-style: oblique;
+    font-weight: bold;
+}

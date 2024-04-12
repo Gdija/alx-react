@@ -1,0 +1,9 @@
+.login{
+    border-top: 3px solid red;
+}
+.login p{
+    float: left;
+    font-size: 30px;
+    margin-left: 2%;
+    margin-top: 4%;
+}
