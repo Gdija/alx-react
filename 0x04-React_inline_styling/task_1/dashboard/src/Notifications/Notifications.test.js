@@ -3,6 +3,8 @@ import { jest } from '@jest/globals';
 import { shallow, mount } from 'enzyme';
 import Notifications from './Notifications';
 import { getLatestNotification } from '../utils/utils';
+import { StyleSheetTestUtils } from "aphrodite";
+
 
 describe("Testing the <Notifications /> Component", () => {
   
@@ -13,11 +15,15 @@ describe("Testing the <Notifications /> Component", () => {
     {id: 3, html: {__html: getLatestNotification()}, type: "urgent"},
   ];
 
-  beforeEach(() => {
-    wrapper = shallow(<Notifications />);
+  beforeAll(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+  afterAll(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
   });
 
   it("<Notifications /> is rendered without crashing", () => {
+    const wrapper = shallow(<Notifications />);
     expect(wrapper).toBeDefined();
   });
 

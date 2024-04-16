@@ -1,8 +1,18 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import CourseList from "./CourseList";
+import { StyleSheetTestUtils } from "aphrodite";
+
 
 describe("Testing <CourseList />", () => {
+  
+  beforeAll(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+  afterAll(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
+
   it("Renders CourseList component without crashing", () => {
     let wrapper = shallow(<CourseList />);
     expect(wrapper.exists());
