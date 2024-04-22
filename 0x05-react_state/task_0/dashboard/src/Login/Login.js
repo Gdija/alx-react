@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, css } from "aphrodite";
+import { Component } from "react/cjs/react.production.min";
 
 function Login() {
   return (
@@ -12,6 +13,10 @@ function Login() {
       <button>OK</button>
     </div>
   );
+}
+
+class MyComponent extends Component{
+  
 }
 
 const screenSize = {
