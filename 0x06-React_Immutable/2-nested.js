@@ -1,6 +1,6 @@
 import { fromJS } from './node_modules/immutable/dist/immutable';
 
-function accessImmutableObject(object, array) {
+const accessImmutableObject = (object, array) => {
 
     const immutableObj = fromJS(object);
     return immutableObj.getIn(array, undefined);
