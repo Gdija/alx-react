@@ -24,7 +24,7 @@ export function getAllNotificationsByUser(userId){
     const notificationContext = [];
 
         for(const notif in notifications ){
-            if (notifications[notif].author.id === userId){
+            if (notifications[notif].author === userId){
                 notificationContext.push(messages[notifications[notif].context]);
         }
     }
