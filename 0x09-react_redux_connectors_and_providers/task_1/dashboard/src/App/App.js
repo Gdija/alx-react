@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
 export const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.get("isUserLoggedIn"),
-    displayDrawer: state.uiReducer.isNotificationDrawerVisible
+    displayDrawer: state.get("isNotificationDrawerVisible")
   };
 };
 

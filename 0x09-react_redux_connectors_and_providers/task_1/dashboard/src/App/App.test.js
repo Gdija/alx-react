@@ -205,5 +205,14 @@ describe("mapStateToProps function", () => {
     const result = mapStateToProps(state);
     expect(result).toEqual({isLoggedIn: true})
   });
+
+  it("verify that the function returns the expected object when provided with a specific state", () =>{
+    let state = fromJS({
+      isNotificationDrawerVisible: true
+    });
+
+    const result = mapStateToProps(state);
+    expect(result).toEqual({displayDrawer: true})
+  });
 });
   
