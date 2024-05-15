@@ -13,8 +13,8 @@ import { user, logOut } from "./AppContext";
 import AppContext from "./AppContext";
 import { connect } from "react-redux";
 import uiReducer from '../reducers/uiReducer';
-import { displayNotificationDrawer, hideNotificationDrawer } from "../actions/uiActionCreators";
-
+import { displayNotificationDrawer, hideNotificationDrawer, login } from "../actions/uiActionCreators";
+import { loginRequest } from "../actions/uiActionCreators";
 
 const listCourses = [
   { id: 1, name: "ES6", credit: 60 },
@@ -36,13 +36,13 @@ class App extends Component {
     this.handleKeyCombination = this.handleKeyCombination.bind(this);
     // this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
     // this.handleHideDrawer = this.handleHideDrawer.bind(this);
-    this.logIn = this.logIn.bind(this);
-    this.logOut = this.logOut.bind(this);
+    // this.logIn = login;
+    // this.logOut = this.logOut.bind(this);
     this.markNotificationAsRead = this.markNotificationAsRead.bind(this);
     this.state = {
       // displayDrawer: false,
       user,
-      logOut: this.logOut,
+      // logOut: this.logOut,
       listNotifications: listNotificationsInitialState,
     };
   }
@@ -62,19 +62,19 @@ class App extends Component {
   //   this.setState({ displayDrawer: false });
   // }
 
-  logIn(email, password) {
-    this.setState({
-      user: {
-        email,
-        password,
-        isLoggedIn: true,
-      },
-    });
-  }
+  // logIn(email, password) {
+  //   this.setState({
+  //     user: {
+  //       email,
+  //       password,
+  //       isLoggedIn: true,
+  //     },
+  //   });
+  // }
 
-  logOut() {
-    this.setState({ user });
-  }
+  // logOut() {
+  //   this.setState({ user });
+  // }
 
   markNotificationAsRead(id) {
     this.setState({
@@ -95,15 +95,14 @@ class App extends Component {
   render() {
     const {
       user,
-      logOut,
       listNotifications,
     } = this.state;
 
     const{isLoggedIn, displayDrawer, 
-      displayNotificationDrawer, hideNotificationDrawer} 
-      = this.props
+      displayNotificationDrawer, hideNotificationDrawer, login
+    } = this.props
 
-    const value = { user, logOut };
+    // const value = { user, logOut };
 
     return (
       <AppContext.Provider value={value}>
@@ -121,7 +120,7 @@ class App extends Component {
           <div className={css(styles.appBody)}>
             {!isLoggedIn ? (
               <BodySectionWithMarginBottom title="Log in to continue">
-                <Login logIn={this.logIn} />
+                <Login logIn={login} />
               </BodySectionWithMarginBottom>
             ) : (
               <BodySectionWithMarginBottom title="Course list">
@@ -158,6 +157,7 @@ App.defaultProps = {
   displayDrawer: false,
   displayNotificationDrawer: () => {},
   hideNotificationDrawer: () => {},
+  login: () => {}
 };
 
 App.propTypes = {
@@ -165,6 +165,7 @@ App.propTypes = {
   displayDrawer: PropTypes.bool.isRequired,
   displayNotificationDrawer: PropTypes.func.isRequired,
   hideNotificationDrawer: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired
 };
 
 const cssVars = {
@@ -216,6 +217,7 @@ export const mapStateToProps = (state) => {
 
 export const mapDispatchToProps = {
   displayNotificationDrawer,
-  hideNotificationDrawer
+  hideNotificationDrawer,
+  login: loginRequest
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);
