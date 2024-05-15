@@ -93,11 +93,11 @@ class App extends Component {
   render() {
     const {
       user,
+      user: { isLoggedIn },
       logOut,
+      displayDrawer,
       listNotifications,
     } = this.state;
-
-    const{isLoggedIn, displayDrawer} = this.props
 
     const value = { user, logOut };
 
@@ -196,7 +196,6 @@ const styles = StyleSheet.create({
 export const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.get("isUserLoggedIn"),
-    displayDrawer: state.uiReducer.isNotificationDrawerVisible
 
   };
 };

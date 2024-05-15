@@ -13,6 +13,8 @@ import { user, logOut } from "./AppContext";
 import AppContext from "./AppContext";
 import { connect } from "react-redux";
 import uiReducer from '../reducers/uiReducer';
+import { displayNotificationDrawer, hideNotificationDrawer } from "../actions/uiActionCreators";
+
 
 const listCourses = [
   { id: 1, name: "ES6", credit: 60 },
@@ -93,11 +95,13 @@ class App extends Component {
   render() {
     const {
       user,
-      user: { isLoggedIn },
       logOut,
-      displayDrawer,
       listNotifications,
     } = this.state;
+
+    const{isLoggedIn, displayDrawer, 
+      displayNotificationDrawer, hideNotificationDrawer} 
+      = this.props
 
     const value = { user, logOut };
 
@@ -196,6 +200,12 @@ const styles = StyleSheet.create({
 export const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.get("isUserLoggedIn"),
+    displayDrawer: state.uiReducer.isNotificationDrawerVisible
   };
 };
-export default connect(mapStateToProps)(App);
+
+export const mapDispatchToProps = {
+  displayNotificationDrawer,
+  hideNotificationDrawer
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App);
