@@ -1,9 +1,15 @@
 import { shallow, mount } from "enzyme";
 import React from "react";
-import App, { listNotificationsInitialState } from "./App";
+import App, { listNotificationsInitialState, mapStateToProps } from "./App";
 import { StyleSheetTestUtils } from "aphrodite";
 import AppContext, { user, logOut } from "./AppContext";
+import {fromJS} from 'immutable';
+import uiReducer from '../reducers/uiReducer';
+import { createStore } from "redux";
+import { Provider } from "react-redux";
 
+
+const store = createStore(uiReducer)
 describe("<App />", () => {
   beforeAll(() => {
     StyleSheetTestUtils.suppressStyleInjection();
@@ -190,3 +196,14 @@ describe("<App />", () => {
     );
   });
 });
+describe("mapStateToProps function", () => {
+  it("verify that the function returns the expected object when provided with a specific state", () =>{
+    let state = fromJS({
+      isUserLoggedIn: true
+    });
+
+    const result = mapStateToProps(state);
+    expect(result).toEqual({isLoggedIn: true})
+  });
+});
+  

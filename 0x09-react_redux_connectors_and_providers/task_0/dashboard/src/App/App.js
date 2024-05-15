@@ -12,6 +12,7 @@ import { StyleSheet, css } from "aphrodite";
 import { user, logOut } from "./AppContext";
 import AppContext from "./AppContext";
 import { connect } from "react-redux";
+import uiReducer from '../reducers/uiReducer';
 
 const listCourses = [
   { id: 1, name: "ES6", credit: 60 },
@@ -192,9 +193,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   return {
-    isLoggedIn: state.uiReducer.isLoggedIn,
+    isLoggedIn: state.get("isUserLoggedIn"),
   };
 };
 export default connect(mapStateToProps)(App);
