@@ -34,13 +34,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.handleKeyCombination = this.handleKeyCombination.bind(this);
-    this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
-    this.handleHideDrawer = this.handleHideDrawer.bind(this);
+    // this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
+    // this.handleHideDrawer = this.handleHideDrawer.bind(this);
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
     this.markNotificationAsRead = this.markNotificationAsRead.bind(this);
     this.state = {
-      displayDrawer: false,
+      // displayDrawer: false,
       user,
       logOut: this.logOut,
       listNotifications: listNotificationsInitialState,
@@ -54,13 +54,13 @@ class App extends Component {
     }
   }
 
-  handleDisplayDrawer() {
-    this.setState({ displayDrawer: true });
-  }
+  // handleDisplayDrawer() {
+  //   this.setState({ displayDrawer: true });
+  // }
 
-  handleHideDrawer() {
-    this.setState({ displayDrawer: false });
-  }
+  // handleHideDrawer() {
+  //   this.setState({ displayDrawer: false });
+  // }
 
   logIn(email, password) {
     this.setState({
@@ -153,9 +153,19 @@ class App extends Component {
   }
 }
 
-App.defaultProps = {};
+App.defaultProps = {
+  isLoggedIn: false,
+  displayDrawer: false,
+  displayNotificationDrawer: () => {},
+  hideNotificationDrawer: () => {},
+};
 
-App.propTypes = {};
+App.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  displayDrawer: PropTypes.bool.isRequired,
+  displayNotificationDrawer: PropTypes.func.isRequired,
+  hideNotificationDrawer: PropTypes.func.isRequired,
+};
 
 const cssVars = {
   mainColor: "#e01d3f",
